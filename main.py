@@ -22,6 +22,9 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         if not file_path:
             return
         self.imageContainer = ImageLoader(file_path)
+        self.update_image_data()
+
+    def update_image_data(self):
         self.display_main_image()
         self.display_cropped_image()
         self.display_number_label()
