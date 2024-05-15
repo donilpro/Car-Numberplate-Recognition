@@ -18,7 +18,11 @@ def classify(img: cv.typing.MatLike, model: YOLO, threshold: float = 150):
     image_label_overlay = label2rgb(label_image, image=image, bg_label=0)
     cords = []
 
-    for region in regionprops(label_image):
+    regions = regionprops(label_image)
+    if len(regions) == 0:
+        return 'No regions'
+
+    for region in regions:
         if region.area >= image.shape[0] / 2:
             cords.append(region.bbox)
 
