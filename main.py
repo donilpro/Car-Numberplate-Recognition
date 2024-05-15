@@ -2,10 +2,11 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QLa
 from PyQt5.QtGui import QPixmap, QImage
 import PyQt5.QtGui
 from PyQt5.uic import loadUi
-from PyQt5.QtCore import pyqtSignal, QByteArray, QBuffer, QIODevice
+from PyQt5.QtCore import pyqtSignal, QByteArray, QBuffer, QIODevice, Qt
 from design.ui.application import Ui_MainWindow
 import sys
 from detector.loader import ImageLoader
+from settings import SettingsDialog
 
 
 class MainWindow(Ui_MainWindow, QMainWindow):
@@ -15,6 +16,12 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.imageContainer = None
 
         self.actionOpen.triggered.connect(self.open_image)
+        self.actionSettings.triggered.connect(self.open_settings)
+
+    def open_settings(self):
+        dialog = SettingsDialog()
+        dialog.setAttribute(Qt.WA_DeleteOnClose)
+        dialog.exec_()
 
     def open_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, 'Open File', './', 'JPEG File (*.jpg);;PNG File (*.png)')
