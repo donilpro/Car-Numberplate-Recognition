@@ -29,7 +29,8 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         print(file_path)
         if not file_path:
             return
-        self.imageContainer = ImageLoader(file_path)
+        self.imageContainer = ImageLoader(file_path, cls_model=self.dialog.get_cls_model(),
+                                          det_model=self.dialog.get_det_model())
         self.update_image_data()
 
     def update_image_data(self):
