@@ -21,6 +21,8 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.dialog = SettingsDialog()
         self.dialog.setAttribute(Qt.WA_DeleteOnClose)
 
+        self.update_model_info(cls_model=self.dialog.get_short_cls_model(), det_model=self.dialog.get_short_det_model())
+
     def open_settings(self):
         self.dialog.exec_()
 

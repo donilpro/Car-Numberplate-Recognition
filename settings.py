@@ -22,6 +22,12 @@ class SettingsDialog(Ui_Dialog, QDialog):
     def get_det_model(self):
         return self._detModel
 
+    def get_short_cls_model(self):
+        return self._clsModel.replace('\\', '/').split('/')[-1]
+
+    def get_short_det_model(self):
+        return self._detModel.replace('\\', '/').split('/')[-1]
+
     def _set_cls_model(self, model):
         self._clsModel = model
         self.labelClsModel.setText(model)
