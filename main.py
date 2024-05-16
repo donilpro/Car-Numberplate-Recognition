@@ -18,10 +18,11 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.actionOpen.triggered.connect(self.open_image)
         self.actionSettings.triggered.connect(self.open_settings)
 
+        self.dialog = SettingsDialog()
+        self.dialog.setAttribute(Qt.WA_DeleteOnClose)
+
     def open_settings(self):
-        dialog = SettingsDialog()
-        dialog.setAttribute(Qt.WA_DeleteOnClose)
-        dialog.exec_()
+        self.dialog.exec_()
 
     def open_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, 'Open File', './', 'JPEG File (*.jpg);;PNG File (*.png)')
