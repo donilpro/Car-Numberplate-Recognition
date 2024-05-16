@@ -47,15 +47,15 @@ class MainWindow(Ui_MainWindow, QMainWindow):
 
     def update_model_info(self, cls_model=None, det_model=None, elapsed_time=None, cls_acc=None, det_acc=None):
         if cls_model is not None:
-            pass
+            self.labelClsModel.setText('Classification model: ' + cls_model)
         if det_model is not None:
-            pass
+            self.labelDetModel.setText('Detector model: ' + det_model)
         if elapsed_time is not None:
-            pass
+            self.labelTime.setText('Elapsed time: ' + str(elapsed_time))
         if cls_acc is not None:
-            pass
+            self.labelClsAcc.setText('Classification accuracy: ' + str(cls_acc))
         if det_acc is not None:
-            pass
+            self.labelDetAcc.setText('Detector accuracy: ' + str(det_acc))
 
 
 if __name__ == '__main__':
