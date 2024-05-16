@@ -40,6 +40,9 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.display_cropped_image()
         self.display_number_label()
 
+        conf = str(round(float(self.imageContainer.get_conf()) * 100, 2)) + ' %'
+        self.update_model_info(det_acc=conf)
+
     def display_main_image(self):
         self.mainView.setPixmap(self.imageContainer.get_image())
 

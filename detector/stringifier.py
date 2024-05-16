@@ -18,10 +18,13 @@ class Stringifier:
             raise ValueError('Model must be either debug or matching')
 
     def _detect(self):
-        self._cropped_image, self._bbox = detect(self._image, self._det_model)
+        self._cropped_image, self._bbox, self._conf = detect(self._image, self._det_model)
 
     def _classify(self):
         self._result = classify(self._cropped_image, self._cls_model)
+
+    def get_conf(self):
+        return self._conf
 
     def get_bbox(self):
         return self._bbox

@@ -10,4 +10,4 @@ def detect(img: cv.typing.MatLike, model: YOLO):
         cords = result.boxes.xyxy
         cords = cords[0].int()
         image = im[cords[1]:cords[3], cords[0]:cords[2], :]
-        return image, cords
+        return image, cords, result.boxes.conf
