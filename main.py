@@ -41,7 +41,8 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.display_number_label()
 
         conf = str(round(float(self.imageContainer.get_conf()) * 100, 2)) + ' %'
-        self.update_model_info(det_acc=conf)
+        time = str(round(self.imageContainer.get_time())) + ' ms'
+        self.update_model_info(det_acc=conf, elapsed_time=time)
 
     def display_main_image(self):
         self.mainView.setPixmap(self.imageContainer.get_image())
