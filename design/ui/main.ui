@@ -87,7 +87,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="plateDecodedLabel">
             <property name="text">
-             <string>TextLabel</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -133,7 +133,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="plateView">
             <property name="text">
-             <string>TextLabel</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -256,7 +256,7 @@ T - 90%</string>
           </size>
          </property>
          <property name="text">
-          <string>TextLabel</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -302,7 +302,7 @@ T - 90%</string>
           </size>
          </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>Debug</string>
          </property>
         </widget>
        </item>
@@ -315,7 +315,7 @@ T - 90%</string>
           </size>
          </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>Detect</string>
          </property>
         </widget>
        </item>

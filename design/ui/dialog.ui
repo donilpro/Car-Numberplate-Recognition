@@ -22,7 +22,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="labelClsModel">
      <property name="text">
       <string>TextLabel</string>
      </property>
@@ -43,7 +43,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="labelDetModel">
      <property name="text">
       <string>TextLabel</string>
      </property>
