@@ -45,6 +45,18 @@ class MainWindow(Ui_MainWindow, QMainWindow):
     def display_number_label(self):
         self.plateDecodedLabel.setText(self.imageContainer.get_symbols())
 
+    def update_model_info(self, cls_model=None, det_model=None, elapsed_time=None, cls_acc=None, det_acc=None):
+        if cls_model is not None:
+            pass
+        if det_model is not None:
+            pass
+        if elapsed_time is not None:
+            pass
+        if cls_acc is not None:
+            pass
+        if det_acc is not None:
+            pass
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
