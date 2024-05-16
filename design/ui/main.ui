@@ -156,21 +156,21 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="labelClsModel">
             <property name="text">
              <string>Classification model: YOLO8n-200e</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="labelDetModel">
             <property name="text">
              <string>Detection model: YOLO8s-100e</string>
             </property>
            </widget>
           </item>
           <item row="0" column="2" rowspan="2">
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="labelClsAcc">
             <property name="text">
              <string>Classifiation accuracy:
 O - 70%
@@ -186,14 +186,14 @@ T - 90%</string>
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="labelTime">
             <property name="text">
              <string>Elapsed time: 10ms</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="labelDetAcc">
             <property name="text">
              <string>Detection accuracy: 80%</string>
             </property>
