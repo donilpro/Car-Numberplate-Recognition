@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QLabel
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QLabel, QMessageBox
 from PyQt5.QtGui import QPixmap, QImage
 import PyQt5.QtGui
 from PyQt5.uic import loadUi
@@ -19,8 +19,10 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.actionOpen.triggered.connect(self.open_image)
         self.actionSettings.triggered.connect(self.open_settings)
         self.debugBtn.clicked.connect(self.display_bw)
+        self.detectBtn.clicked.connect(self.update_image_data)
 
         self.dialog = SettingsDialog()
+        self.thresh = self.dialog.get_thresh()
         # self.dialog.setAttribute(Qt.WA_DeleteOnClose)
 
         self.update_model_info(cls_model=self.dialog.get_short_cls_model(), det_model=self.dialog.get_short_det_model())
@@ -31,10 +33,7 @@ class MainWindow(Ui_MainWindow, QMainWindow):
 
     def open_settings(self):
         self.dialog.exec_()
-        try:
-            self.thresh = self.dialog.get_threshold()
-        except Exception:
-            pass
+        self.thresh = self.dialog.get_thresh()
 
     def open_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, 'Open File', './', 'JPEG File (*.jpg);;PNG File (*.png)')
@@ -52,13 +51,16 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         self.update_image_data()
 
     def update_image_data(self):
-        self.display_main_image()
-        self.display_cropped_image()
-        self.display_number_label()
+        if self.imageContainer:
+            self.display_main_image()
+            self.display_cropped_image()
+            self.display_number_label()
 
-        conf = str(round(float(self.imageContainer.get_conf()) * 100, 2)) + ' %'
-        time = str(round(self.imageContainer.get_time())) + ' ms'
-        self.update_model_info(det_acc=conf, elapsed_time=time)
+            conf = str(round(float(self.imageContainer.get_conf()) * 100, 2)) + ' %'
+            time = str(round(self.imageContainer.get_time())) + ' ms'
+            self.update_model_info(det_acc=conf, elapsed_time=time)
+        else:
+            QMessageBox.warning(self, "Error", "Image's not set")
 
     def display_main_image(self):
         self.mainView.setPixmap(self.imageContainer.get_image())
