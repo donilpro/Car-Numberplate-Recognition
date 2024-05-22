@@ -32,7 +32,7 @@ class ImageLoader(Stringifier):
             frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
         else:
             frame = image
-            return QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_Grayscale8)
+            return QImage(frame, frame.shape[1], frame.shape[0], frame.strides[0], QImage.Format_Grayscale8)
         return QImage(frame, frame.shape[1], frame.shape[0], frame.strides[0], QImage.Format_RGB888)
 
     def get_image(self) -> QPixmap:
