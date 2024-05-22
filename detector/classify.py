@@ -2,6 +2,7 @@ from ultralytics import YOLO
 import cv2 as cv
 import numpy as np
 
+from skimage.util import img_as_ubyte, img_as_bool, img_as_float
 from skimage.filters import threshold_otsu
 from skimage.segmentation import clear_border
 from skimage.measure import label, regionprops
@@ -13,23 +14,32 @@ import matplotlib.pyplot as plt
 
 def classify(img: cv.typing.MatLike, model: YOLO, threshold: float = 100):
     threshold = int(threshold)
+
     image = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
-    bw = closing(image < threshold, square(3))
+    # image = cv.medianBlur(image, 2)
+    bw = cv.adaptiveThreshold(image, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, \
+                               cv.THRESH_BINARY, 11, 2)
+    bw = cv.bitwise_not(bw)
+    # bw = closing(image < threshold, square(3))
     cleared = clear_border(bw)
     label_image = label(cleared)
     image_label_overlay = label2rgb(label_image, image=image, bg_label=0)
-    plt.imshow(cleared, cmap='gray')
-    plt.show()
     cords = []
 
     regions = regionprops(label_image)
     if len(regions) == 0:
-        return 'No regions', bw
+        return 'No regions', img_as_ubyte(bw), cleared, image
 
     for region in regions:
-        if region.area >= image.shape[0] / 16 * image.shape[1] / 16:
+        image_area = image.shape[0] * image.shape[1]
+        letter_width = region.bbox[3] - region.bbox[1] < image.shape[1] / 5
+        if region.area >= image_area / 256 and image_area / 20 and letter_width:
+            print(region.bbox)
+            image = cv.rectangle(image, (region.bbox[1], region.bbox[0]), (region.bbox[3], region.bbox[2]), color=(0,255,0), thickness=1)
             cords.append(region.bbox)
+
+    plt.imshow(image, cmap='gray')
 
     letters_boxes = np.array(cords)
     letters_boxes = letters_boxes[letters_boxes[:, 1].argsort()]
@@ -47,4 +57,6 @@ def classify(img: cv.typing.MatLike, model: YOLO, threshold: float = 100):
         # print(result.conf)
         predicted.append(result.names[result.probs.top1])
 
-    return ''.join(predicted), cleared
+    plt.show()
+
+    return ''.join(predicted), bw, cleared, image
