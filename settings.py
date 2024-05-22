@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QLabel
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QLabel, QMessageBox
 from PyQt5.QtGui import QPixmap, QImage
 import PyQt5.QtGui
 from PyQt5.uic import loadUi
@@ -19,6 +19,11 @@ class SettingsDialog(Ui_Dialog, QDialog):
 
         self.selectClsModel.clicked.connect(self._cls_model_selector)
         self.selectDetModel.clicked.connect(self._det_model_selector)
+        self.saveBtn.clicked.connect(self._save_thresh)
+
+    def _save_thresh(self):
+        self._save_ini(thresh=str(self.threshBox.value()))
+        button = QMessageBox.warning(self, "Question dialog", "The longer message")
 
     def _cls_model_selector(self):
         file_path, _ = QFileDialog.getOpenFileName(self, 'Open File', './', 'Weight File (*.pt)')
@@ -33,6 +38,9 @@ class SettingsDialog(Ui_Dialog, QDialog):
             return
         self._set_det_model(file_path)
         self._save_ini(det_model=file_path)
+
+    def get_thresh(self):
+        return int(self._thresh)
 
     def get_cls_model(self):
         return self._clsModel

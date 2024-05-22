@@ -14,25 +14,41 @@ class MainWindow(Ui_MainWindow, QMainWindow):
         super().__init__()
         self.setupUi(self)
         self.imageContainer = None
+        self.thresh = None
 
         self.actionOpen.triggered.connect(self.open_image)
         self.actionSettings.triggered.connect(self.open_settings)
+        self.debugBtn.clicked.connect(self.display_bw)
 
         self.dialog = SettingsDialog()
-        self.dialog.setAttribute(Qt.WA_DeleteOnClose)
+        # self.dialog.setAttribute(Qt.WA_DeleteOnClose)
 
         self.update_model_info(cls_model=self.dialog.get_short_cls_model(), det_model=self.dialog.get_short_det_model())
 
+    def display_bw(self):
+        if self.imageContainer is not None:
+            self.plateView.setPixmap(self.imageContainer.get_bw_image())
+
     def open_settings(self):
         self.dialog.exec_()
+        try:
+            self.thresh = self.dialog.get_threshold()
+        except Exception:
+            pass
 
     def open_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, 'Open File', './', 'JPEG File (*.jpg);;PNG File (*.png)')
         print(file_path)
         if not file_path:
             return
-        self.imageContainer = ImageLoader(file_path, cls_model=self.dialog.get_cls_model(),
-                                          det_model=self.dialog.get_det_model())
+        if self.thresh is not None:
+            self.imageContainer = ImageLoader(file_path, cls_model=self.dialog.get_cls_model(),
+                                              det_model=self.dialog.get_det_model(), thresh=self.thresh)
+        else:
+            self.imageContainer = ImageLoader(file_path, cls_model=self.dialog.get_cls_model(),
+                                              det_model=self.dialog.get_det_model())
+        if self.thresh is not None:
+            self.imageContainer.set_threshold(self.thresh)
         self.update_image_data()
 
     def update_image_data(self):

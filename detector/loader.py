@@ -8,7 +8,7 @@ from PyQt5.QtGui import QPixmap, QImage
 
 
 class ImageLoader(Stringifier):
-    def __init__(self, image: cv.typing.MatLike | str, cls_model: str, det_model: str) -> None:
+    def __init__(self, image: cv.typing.MatLike | str, cls_model: str, det_model: str, thresh: int = 150) -> None:
         """
         Opens the image
         :param image:
@@ -24,11 +24,15 @@ class ImageLoader(Stringifier):
         # self._cropped_image = cv.imread(directory)
         # yolo_cls = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'classify', 'cls_n_100e_only_letters.pt')
         # yolo_det = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'detect', 'det_s_100e.pt')
-        super().__init__(self._image, model='matching', cls_model=cls_model, det_model=det_model)
+        super().__init__(self._image, model='matching', cls_model=cls_model, det_model=det_model, threshold=thresh)
 
     @staticmethod
-    def _to_qimage(image: cv.typing.MatLike) -> QImage:
-        frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+    def _to_qimage(image: cv.typing.MatLike, is_bgr=True) -> QImage:
+        if is_bgr:
+            frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        else:
+            frame = image
+            return QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_Grayscale8)
         return QImage(frame, frame.shape[1], frame.shape[0], frame.strides[0], QImage.Format_RGB888)
 
     def get_image(self) -> QPixmap:
@@ -44,6 +48,9 @@ class ImageLoader(Stringifier):
         :return:
         """
         return QPixmap.fromImage(self._to_qimage(super().get_cropped_image()))
+
+    def get_bw_image(self) -> QPixmap:
+        return QPixmap.fromImage(self._to_qimage(super().get_bw_image(), is_bgr=False))
 
     # def get_symbols(self) -> str:
     #     """

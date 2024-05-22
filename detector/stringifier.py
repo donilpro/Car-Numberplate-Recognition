@@ -5,9 +5,11 @@ from ultralytics import YOLO
 
 
 class Stringifier:
-    def __init__(self, image: cv.typing.MatLike, model: str = 'debug', cls_model: str = None, det_model: str = None):
+    def __init__(self, image: cv.typing.MatLike, model: str = 'debug', cls_model: str = None, det_model: str = None,
+                 threshold: int = 150):
         self._result = None
         self._image = image
+        self._thresh = threshold
         if model == 'debug':
             self._model = model
             self._result = 'A000AA116'
@@ -17,11 +19,14 @@ class Stringifier:
         else:
             raise ValueError('Model must be either debug or matching')
 
+    def set_threshold(self, threshold: int):
+        self._thresh = threshold
+
     def _detect(self):
         self._cropped_image, self._bbox, self._conf, self._det_time = detect(self._image, self._det_model)
 
     def _classify(self):
-        self._result = classify(self._cropped_image, self._cls_model)
+        self._result, self._bw_image = classify(self._cropped_image, self._cls_model, self._thresh)
 
     def get_time(self):
         return self._det_time
@@ -35,6 +40,9 @@ class Stringifier:
     def get_cropped_image(self):
         self._detect()
         return self._cropped_image
+
+    def get_bw_image(self):
+        return self._bw_image
 
     def get_symbols(self):
         self._classify()

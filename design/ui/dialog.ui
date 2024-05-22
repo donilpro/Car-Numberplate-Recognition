@@ -64,7 +64,7 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QSpinBox" name="spinBox">
+    <widget class="QSpinBox" name="threshBox">
      <property name="maximum">
       <number>255</number>
      </property>
@@ -74,9 +74,9 @@
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="saveBtn">
      <property name="text">
-      <string>Edit</string>
+      <string>Save</string>
      </property>
     </widget>
    </item>

@@ -8,22 +8,27 @@ from skimage.measure import label, regionprops
 from skimage.morphology import closing, square
 from skimage.color import label2rgb
 
+import matplotlib.pyplot as plt
 
-def classify(img: cv.typing.MatLike, model: YOLO, threshold: float = 150):
+
+def classify(img: cv.typing.MatLike, model: YOLO, threshold: float = 100):
+    threshold = int(threshold)
     image = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
     bw = closing(image < threshold, square(3))
     cleared = clear_border(bw)
     label_image = label(cleared)
     image_label_overlay = label2rgb(label_image, image=image, bg_label=0)
+    plt.imshow(cleared, cmap='gray')
+    plt.show()
     cords = []
 
     regions = regionprops(label_image)
     if len(regions) == 0:
-        return 'No regions'
+        return 'No regions', bw
 
     for region in regions:
-        if region.area >= image.shape[0] / 2:
+        if region.area >= image.shape[0] / 16 * image.shape[1] / 16:
             cords.append(region.bbox)
 
     letters_boxes = np.array(cords)
@@ -39,6 +44,7 @@ def classify(img: cv.typing.MatLike, model: YOLO, threshold: float = 150):
     results = model(numbers)
     predicted = []
     for result in results:
+        # print(result.conf)
         predicted.append(result.names[result.probs.top1])
 
-    return ''.join(predicted)
+    return ''.join(predicted), cleared
