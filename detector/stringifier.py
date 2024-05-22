@@ -26,7 +26,7 @@ class Stringifier:
         self._cropped_image, self._bbox, self._conf, self._det_time = detect(self._image, self._det_model)
 
     def _classify(self):
-        self._result, self._bw_image = classify(self._cropped_image, self._cls_model, self._thresh)
+        self._result, _, _, self._bw_image = classify(self._cropped_image, self._cls_model, self._thresh)
 
     def get_time(self):
         return self._det_time
