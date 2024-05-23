@@ -27,9 +27,13 @@ class ImageLoader(Stringifier):
         super().__init__(self._image, model='matching', cls_model=cls_model, det_model=det_model, threshold=thresh)
 
     @staticmethod
-    def _to_qimage(image: cv.typing.MatLike, is_bgr=True) -> QImage:
+    def _to_qimage(image: cv.typing.MatLike, is_bgr=True, invert=True) -> QImage:
         if is_bgr:
-            frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+            if invert:
+                frame = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+            else:
+                # TODO FIX THIS
+                frame = cv.cvtColor(cv.cvtColor(image, cv.COLOR_BGR2RGB), cv.COLOR_RGB2BGR)
         else:
             frame = image
             return QImage(frame, frame.shape[1], frame.shape[0], frame.strides[0], QImage.Format_Grayscale8)
@@ -47,10 +51,14 @@ class ImageLoader(Stringifier):
         Returns 520 x 112 or 0.5, 0.25 scaled size image as QPixmap
         :return:
         """
-        return QPixmap.fromImage(self._to_qimage(super().get_cropped_image()))
+        return QPixmap.fromImage(self._to_qimage(super().get_cropped_image(), invert=False))
 
     def get_bw_image(self) -> QPixmap:
         return QPixmap.fromImage(self._to_qimage(super().get_bw_image(), is_bgr=False))
+
+    def get_bbox_image(self) -> QPixmap:
+        frame = super().get_bbox()
+        return QPixmap.fromImage(QImage(frame, frame.shape[1], frame.shape[0], frame.strides[0], QImage.Format_RGB888))
 
     # def get_symbols(self) -> str:
     #     """

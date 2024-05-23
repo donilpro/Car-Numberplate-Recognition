@@ -30,6 +30,7 @@ class MainWindow(Ui_MainWindow, QMainWindow):
     def display_bw(self):
         if self.imageContainer is not None:
             self.plateView.setPixmap(self.imageContainer.get_bw_image())
+            self.mainView.setPixmap(self.imageContainer.get_bbox_image())
 
     def open_settings(self):
         self.dialog.exec_()

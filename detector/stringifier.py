@@ -23,7 +23,7 @@ class Stringifier:
         self._thresh = threshold
 
     def _detect(self):
-        self._cropped_image, self._bbox, self._det_conf, self._det_time = detect(self._image, self._det_model)
+        self._cropped_image, self._bbox, self._det_conf, self._det_time, self._bbox_normalized = detect(self._image, self._det_model)
 
     def _classify(self):
         self._result, self._cls_conf, _, self._bw_image = classify(self._cropped_image, self._cls_model, self._thresh)
@@ -38,7 +38,7 @@ class Stringifier:
         return list(zip(self._result, self._cls_conf))
 
     def get_bbox(self):
-        return self._bbox
+        return self._bbox_normalized
 
     def get_cropped_image(self):
         self._detect()
