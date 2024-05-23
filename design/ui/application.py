@@ -9,6 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QLabel
+import os.path
 
 
 class Ui_MainWindow(object):
@@ -176,3 +179,5 @@ class Ui_MainWindow(object):
         self.menuSettings.setTitle(_translate("MainWindow", "Edit"))
         self.actionOpen.setText(_translate("MainWindow", "Open"))
         self.actionSettings.setText(_translate("MainWindow", "Settings"))
+        pixmap = QPixmap(os.path.join("..", "logo", "logo.png"))
+        self.label.setPixmap(pixmap)
