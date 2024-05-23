@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Параметры</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
