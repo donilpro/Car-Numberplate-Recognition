@@ -6,77 +6,214 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>605</width>
+    <height>358</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Century Gothic</family>
+    <pointsize>12</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background: #000;
+	min-width: 605px;
+}
+
+QLabel {
+	color: #fff;
+	font-size: 14px;
+}
+
+#label, #label_2, #label_5 {
+	font-weight: 700;
+}
+
+#labelClsModel, #labelDetModel {
+	font-weight: 450;
+	color: #00e19d;
+}
+
+#spinBox {
+	background: #000;
+	stroke-width: 3px;
+	stroke: #00C68A;
+	color: #fff;
+}
+
+QPushButton {
+	border-top: 2px solid #00e19d;
+	border-bottom: 2px solid #00e19d;
+
+	border-radius: 5px;
+	background: #000;
+	color: #fff;
+}
+
+QPushButton:hover {
+    background-color: #00e19d; 
+}
+
+QPushButtom:focus {
+    background-color: #00E1B8;
+	border: 3px solid #00E1B8;
+}</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Classification model: </string>
+   <property name="leftMargin">
+    <number>25</number>
+   </property>
+   <property name="rightMargin">
+    <number>25</number>
+   </property>
+   <property name="horizontalSpacing">
+    <number>25</number>
+   </property>
+   <property name="verticalSpacing">
+    <number>15</number>
+   </property>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+      </font>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="labelClsModel">
      <property name="text">
-      <string>TextLabel</string>
+      <string>Изменить</string>
      </property>
     </widget>
    </item>
    <item row="0" column="2">
     <widget class="QPushButton" name="selectClsModel">
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+      </font>
+     </property>
      <property name="text">
-      <string>Edit</string>
+      <string>Изменить</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <weight>87</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>Detection model:</string>
+      <string>Модель классификации</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="labelDetModel">
+   <item row="0" column="1">
+    <widget class="QLabel" name="labelClsModel">
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <weight>56</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>Название модели</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item row="1" column="2">
     <widget class="QPushButton" name="selectDetModel">
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+      </font>
+     </property>
      <property name="text">
-      <string>Edit</string>
+      <string>Изменить</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_5">
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <weight>87</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>Threshold</string>
+      <string>Порог</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <weight>87</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Модель обнаружения</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="labelDetModel">
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <weight>56</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Название модели</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
     <widget class="QSpinBox" name="spinBox">
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
      <property name="maximum">
       <number>255</number>
      </property>
      <property name="value">
       <number>150</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="text">
-      <string>Edit</string>
      </property>
     </widget>
    </item>
