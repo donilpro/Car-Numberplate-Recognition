@@ -56,9 +56,14 @@ class MainWindow(Ui_MainWindow, QMainWindow):
             self.display_cropped_image()
             self.display_number_label()
 
-            conf = str(round(float(self.imageContainer.get_conf()) * 100, 2)) + ' %'
+            det_conf = str(round(float(self.imageContainer.get_det_conf()) * 100, 2)) + ' %'
+            cls_conf = ''
+
+            for sym, conf in self.imageContainer.get_cls_conf():
+                cls_conf += f'\n{sym} - {conf}%'
+
             time = str(round(self.imageContainer.get_time())) + ' ms'
-            self.update_model_info(det_acc=conf, elapsed_time=time)
+            self.update_model_info(cls_acc=cls_conf, det_acc=det_conf, elapsed_time=time)
         else:
             QMessageBox.warning(self, "Error", "Image's not set")
 
