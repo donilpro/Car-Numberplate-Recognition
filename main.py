@@ -1,12 +1,30 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QLabel, QMessageBox
 from PyQt5.QtGui import QPixmap, QImage
 import PyQt5.QtGui
-from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSignal, QByteArray, QBuffer, QIODevice, Qt
 from design.ui.application import Ui_MainWindow
 import sys
 from detector.loader import ImageLoader
 from settings import SettingsDialog
+from model import download_models
+
+
+def download_ask():
+    dlg = QMessageBox()
+    dlg.setWindowTitle("ClearML model downloader")
+    dlg.setText("Do you need to download models?")
+    dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    dlg.setIcon(QMessageBox.Question)
+    button = dlg.exec()
+
+    if button == QMessageBox.Yes:
+        download_models()
+        suc = QMessageBox()
+        suc.setWindowTitle("ClearML model downloader")
+        suc.setText("Done")
+        suc.setStandardButtons(QMessageBox.Ok)
+        suc.setIcon(QMessageBox.Information)
+        suc.exec()
 
 
 class MainWindow(Ui_MainWindow, QMainWindow):
@@ -105,6 +123,7 @@ class MainWindow(Ui_MainWindow, QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    download_ask()
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
