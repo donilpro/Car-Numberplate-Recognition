@@ -19,9 +19,77 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#MainWindow {
+	background: #000;
+}
+
+#mainView, #plateView, #plateDecodedLabel {
+	border: 3px solid #00e19d;
+	border-radius: 20px;
+	background: rgba(255, 252, 252, 0.15);
+}
+
+#menubar {
+	background: #000;
+	color: #fff;
+}
+
+
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+	background: #000;
+}</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="1">
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="horizontalSpacing">
+     <number>20</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>5</number>
+    </property>
+    <item row="6" column="0">
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="0">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="0">
      <widget class="QFrame" name="mainFrame">
       <property name="minimumSize">
        <size>
@@ -75,70 +143,14 @@
           <string/>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QFrame" name="frame_6">
-      <property name="minimumSize">
-       <size>
-        <width>960</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QPushButton" name="debugBtn">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Debug</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="detectBtn">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Detect</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="3" column="1">
+    <item row="3" column="0">
      <widget class="QFrame" name="frame_5">
       <property name="minimumSize">
        <size>
@@ -206,9 +218,6 @@
             <property name="text">
              <string/>
             </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
            </widget>
           </item>
          </layout>
@@ -255,9 +264,6 @@
             <property name="text">
              <string/>
             </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
            </widget>
           </item>
          </layout>
@@ -271,6 +277,11 @@
            <height>0</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+	color: #fff;
+}</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -278,24 +289,83 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item row="1" column="1">
+           <widget class="QLabel" name="labelDetAcc">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Точность обнаружения: 80%</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelClsModel">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>Classification model: YOLO8n-200e</string>
+             <string>Модель классификации: YOLO8n-200e</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelDetModel">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>Detection model: YOLO8s-100e</string>
+             <string>Модель обнаружения: YOLO8s-100e</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelTime">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Затраченное время: 10ms</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
           <item row="0" column="2" rowspan="2">
            <widget class="QLabel" name="labelClsAcc">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>7</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>Classifiation accuracy:
+             <string>Точность классификации:
 O - 70%
 7 - 66%
 6 - 52%
@@ -304,21 +374,7 @@ D - 84%
 T - 90%</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelTime">
-            <property name="text">
-             <string>Elapsed time: 10ms</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="labelDetAcc">
-            <property name="text">
-             <string>Detection accuracy: 80%</string>
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -328,20 +384,7 @@ T - 90%</string>
       </layout>
      </widget>
     </item>
-    <item row="4" column="1">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="1">
+    <item row="0" column="0">
      <spacer name="verticalSpacer_4">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -354,20 +397,7 @@ T - 90%</string>
       </property>
      </spacer>
     </item>
-    <item row="6" column="1">
-     <spacer name="verticalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="1">
+    <item row="2" column="0">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -380,31 +410,92 @@ T - 90%</string>
       </property>
      </spacer>
     </item>
-    <item row="3" column="2">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="5" column="0">
+     <widget class="QFrame" name="frame_6">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	border-bottom: 1px solid #00e19d;
+	border-top: 2px solid #00e19d;
+	border-radius: 10px;
+	background: #000;
+	color: #fff;
+}
+
+QPushButton:hover {
+    background-color: #00e19d; 
+}
+
+QPushButtom:focus {
+    background-color: #00E1B8;
+	border: 10px solid #00E1B8;
+}</string>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
-     </spacer>
-    </item>
-    <item row="1" column="0">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Century Gothic</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Обнаружение</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Century Gothic</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Отладка</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -414,8 +505,28 @@ T - 90%</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Century Gothic</family>
+     <weight>50</weight>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
    </property>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -431,10 +542,20 @@ T - 90%</string>
    <property name="text">
     <string>Open</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Century Gothic</family>
+    </font>
+   </property>
   </action>
   <action name="actionSettings">
    <property name="text">
     <string>Settings</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Century Gothic</family>
+    </font>
    </property>
   </action>
  </widget>
