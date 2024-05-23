@@ -14,50 +14,142 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 300)
+        Dialog.resize(605, 358)
+        font = QtGui.QFont()
+        font.setFamily("Century Gothic")
+        font.setPointSize(12)
+        Dialog.setFont(font)
+        Dialog.setAutoFillBackground(False)
+        Dialog.setStyleSheet("QDialog {\n"
+"    background: #000;\n"
+"    min-width: 605px;\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    color: #fff;\n"
+"    font-size: 14px;\n"
+"}\n"
+"\n"
+"#label, #label_2, #label_5 {\n"
+"    font-weight: 700;\n"
+"}\n"
+"\n"
+"#labelClsModel, #labelDetModel {\n"
+"    font-weight: 450;\n"
+"    color: #00e19d;\n"
+"}\n"
+"\n"
+"#spinBox {\n"
+"    background: #000;\n"
+"    stroke-width: 3px;\n"
+"    stroke: #00C68A;\n"
+"    color: #fff;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    border-top: 2px solid #00e19d;\n"
+"    border-bottom: 2px solid #00e19d;\n"
+"\n"
+"    border-radius: 5px;\n"
+"    background: #000;\n"
+"    color: #fff;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #00e19d; \n"
+"}\n"
+"\n"
+"QPushButtom:focus {\n"
+"    background-color: #00E1B8;\n"
+"    border: 3px solid #00E1B8;\n"
+"}")
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
+        self.gridLayout.setContentsMargins(25, -1, 25, -1)
+        self.gridLayout.setHorizontalSpacing(25)
+        self.gridLayout.setVerticalSpacing(15)
         self.gridLayout.setObjectName("gridLayout")
+        self.saveBtn = QtWidgets.QPushButton(Dialog)
+        font = QtGui.QFont()
+        font.setFamily("Century Gothic")
+        self.saveBtn.setFont(font)
+        self.saveBtn.setObjectName("saveBtn")
+        self.gridLayout.addWidget(self.saveBtn, 2, 2, 1, 1)
+        self.selectClsModel = QtWidgets.QPushButton(Dialog)
+        font = QtGui.QFont()
+        font.setFamily("Century Gothic")
+        self.selectClsModel.setFont(font)
+        self.selectClsModel.setObjectName("selectClsModel")
+        self.gridLayout.addWidget(self.selectClsModel, 0, 2, 1, 1)
         self.label_2 = QtWidgets.QLabel(Dialog)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(87)
+        self.label_2.setFont(font)
+        self.label_2.setScaledContents(False)
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
         self.labelClsModel = QtWidgets.QLabel(Dialog)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setWeight(56)
+        self.labelClsModel.setFont(font)
+        self.labelClsModel.setAlignment(QtCore.Qt.AlignCenter)
         self.labelClsModel.setObjectName("labelClsModel")
         self.gridLayout.addWidget(self.labelClsModel, 0, 1, 1, 1)
-        self.selectClsModel = QtWidgets.QPushButton(Dialog)
-        self.selectClsModel.setObjectName("selectClsModel")
-        self.gridLayout.addWidget(self.selectClsModel, 0, 2, 1, 1)
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
-        self.labelDetModel = QtWidgets.QLabel(Dialog)
-        self.labelDetModel.setObjectName("labelDetModel")
-        self.gridLayout.addWidget(self.labelDetModel, 1, 1, 1, 1)
         self.selectDetModel = QtWidgets.QPushButton(Dialog)
+        font = QtGui.QFont()
+        font.setFamily("Century Gothic")
+        self.selectDetModel.setFont(font)
         self.selectDetModel.setObjectName("selectDetModel")
         self.gridLayout.addWidget(self.selectDetModel, 1, 2, 1, 1)
         self.label_5 = QtWidgets.QLabel(Dialog)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(87)
+        self.label_5.setFont(font)
+        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
+        self.label = QtWidgets.QLabel(Dialog)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(87)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
+        self.labelDetModel = QtWidgets.QLabel(Dialog)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setWeight(56)
+        self.labelDetModel.setFont(font)
+        self.labelDetModel.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelDetModel.setObjectName("labelDetModel")
+        self.gridLayout.addWidget(self.labelDetModel, 1, 1, 1, 1)
         self.threshBox = QtWidgets.QSpinBox(Dialog)
+        self.threshBox.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.threshBox.setMaximum(255)
         self.threshBox.setProperty("value", 150)
         self.threshBox.setObjectName("threshBox")
         self.gridLayout.addWidget(self.threshBox, 2, 1, 1, 1)
-        self.saveBtn = QtWidgets.QPushButton(Dialog)
-        self.saveBtn.setObjectName("saveBtn")
-        self.gridLayout.addWidget(self.saveBtn, 2, 2, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label_2.setText(_translate("Dialog", "Classification model: "))
-        self.labelClsModel.setText(_translate("Dialog", "TextLabel"))
-        self.selectClsModel.setText(_translate("Dialog", "Edit"))
-        self.label.setText(_translate("Dialog", "Detection model:"))
-        self.labelDetModel.setText(_translate("Dialog", "TextLabel"))
-        self.selectDetModel.setText(_translate("Dialog", "Edit"))
-        self.label_5.setText(_translate("Dialog", "Threshold"))
-        self.saveBtn.setText(_translate("Dialog", "Save"))
+        Dialog.setWindowTitle(_translate("Dialog", "Параметры"))
+        self.saveBtn.setText(_translate("Dialog", "Сохранить"))
+        self.selectClsModel.setText(_translate("Dialog", "Изменить"))
+        self.label_2.setText(_translate("Dialog", "Модель классификации"))
+        self.labelClsModel.setText(_translate("Dialog", "Название модели"))
+        self.selectDetModel.setText(_translate("Dialog", "Изменить"))
+        self.label_5.setText(_translate("Dialog", "Порог"))
+        self.label.setText(_translate("Dialog", "Модель обнаружения"))
+        self.labelDetModel.setText(_translate("Dialog", "Название модели"))
