@@ -13,6 +13,11 @@ class MainWindow(Ui_MainWindow, QMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        self.debugBtnTextNormal = 'Origin'
+        self.debugBtnTextDefault = self.debugBtn.text()
+        self.isDebug = False
+
         self.imageContainer = None
         self.thresh = None
 
@@ -29,8 +34,16 @@ class MainWindow(Ui_MainWindow, QMainWindow):
 
     def display_bw(self):
         if self.imageContainer is not None:
-            self.plateView.setPixmap(self.imageContainer.get_bw_image())
-            self.mainView.setPixmap(self.imageContainer.get_bbox_image())
+            if not self.isDebug:
+                self.plateView.setPixmap(self.imageContainer.get_bw_image())
+                self.mainView.setPixmap(self.imageContainer.get_bbox_image())
+                self.isDebug = True
+                self.debugBtn.setText(self.debugBtnTextNormal)
+            else:
+                self.display_main_image()
+                self.display_cropped_image()
+                self.isDebug = False
+                self.debugBtn.setText(self.debugBtnTextDefault)
 
     def open_settings(self):
         self.dialog.exec_()
